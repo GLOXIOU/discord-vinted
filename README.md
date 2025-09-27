@@ -14,7 +14,7 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/vinted-discord-bot.git
+   git clone https://github.com/GLOXIOU/discord-vinted
    cd vinted-discord-bot
    ```
 
@@ -76,5 +76,6 @@ This project is intended **for educational and personal use only**.
 * Using it extensively may lead to **IP bans, account restrictions, or breaking changes** if Vinted updates their platform.
 * The author does **not provide any warranty** and is **not responsible** for misuse of this software.
 * By using this project, you agree to take full responsibility for any consequences that may occur.
+
 
 If you wish to use this bot, please do so **responsibly and at your own risk**.
