@@ -14,7 +14,7 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/GLOXIOU/discord-vinted
+   git clone https://github.com/GLOXIOU/vinted-discord-bot.git
    cd vinted-discord-bot
    ```
 
@@ -31,9 +31,19 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
    pip install -r requirements.txt
    ```
 
-4. On your Discord server, create a role named **Admin** and assign it to users who should be able to use the bot commands.
+4. Install Chromium (required for some Cloudflare bypasses / browser scripts):
+   ```bash
+   sudo apt-get update && sudo apt-get install -y chromium-browser
+   ```
 
-5. Start the bot:
+Note: Depending on your distribution, the package may be named chromium instead of chromium-browser. If the above command doesn't work, try:
+   ```bash
+   sudo apt-get update && sudo apt-get install -y chromium
+   ```
+
+5. On your Discord server, create a role named **Admin** and assign it to users who should be able to use the bot commands.
+
+6. Start the bot:
 
    ```bash
    python bot.py
@@ -76,6 +86,5 @@ This project is intended **for educational and personal use only**.
 * Using it extensively may lead to **IP bans, account restrictions, or breaking changes** if Vinted updates their platform.
 * The author does **not provide any warranty** and is **not responsible** for misuse of this software.
 * By using this project, you agree to take full responsibility for any consequences that may occur.
-
 
 If you wish to use this bot, please do so **responsibly and at your own risk**.
