@@ -36,7 +36,7 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
    sudo apt-get update && sudo apt-get install -y chromium-browser
    ```
 
-Note: Depending on your distribution, the package may be named chromium instead of chromium-browser. If the above command doesn't work, try:
+   Note: Depending on your distribution, the package may be named chromium instead of chromium-browser. If the above command doesn't work, try:
    ```bash
    sudo apt-get update && sudo apt-get install -y chromium
    ```
@@ -86,5 +86,6 @@ This project is intended **for educational and personal use only**.
 * Using it extensively may lead to **IP bans, account restrictions, or breaking changes** if Vinted updates their platform.
 * The author does **not provide any warranty** and is **not responsible** for misuse of this software.
 * By using this project, you agree to take full responsibility for any consequences that may occur.
+
 
 If you wish to use this bot, please do so **responsibly and at your own risk**.
