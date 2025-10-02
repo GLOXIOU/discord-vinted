@@ -3,12 +3,14 @@ import json
 import time
 import os
 import requests
+import chromedriver_autoinstaller
 
 COOKIES_FILE = "cookies.json"
 COOKIE_EXPIRY_FILE = "cookies_expire.txt"
 COOKIE_LIFETIME_SECONDS = 30 * 60
 
 def get_vinted_cookies():
+    chromedriver_autoinstaller.install()
     options = uc.ChromeOptions()
     options.headless = True
     options.add_argument('--no-sandbox')
@@ -65,5 +67,6 @@ def make_vinted_request(url, headers=None, retry=True):
             session.cookies.set(cookie['name'], cookie['value'])
 
         response = session.get(url, headers=headers)
+
 
     return response
