@@ -58,7 +58,7 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
 * `/follow-keyword` → Start tracking a keyword (1 request every 2 minutes to Vinted).
 * `/delete-keyword` → Remove a tracked keyword.
 
-⚠️ You must have the **Admin** role to execute commands.
+⚠️ You must have the **Admin** discord role to execute commands.
 
 ---
 
@@ -89,3 +89,4 @@ This project is intended **for educational and personal use only**.
 
 
 If you wish to use this bot, please do so **responsibly and at your own risk**.
+
