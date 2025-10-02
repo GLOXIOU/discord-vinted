@@ -1,5 +1,6 @@
 discord.py>=2.3.2
 undetected-chromedriver>=3.5.5
+chromedriver-autoinstaller==0.7.1
 curl_cffi>=0.6.10
 requests>=2.31.0
 python-dotenv>=1.0.0
