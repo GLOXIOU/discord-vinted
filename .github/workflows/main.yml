@@ -34,3 +34,5 @@ jobs:
       - name: Run Discord bot
         run: |
           python bot.py
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
