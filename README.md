@@ -23,6 +23,7 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
    ```
    DISCORD_TOKEN=your_discord_token
    PRICE_MARGIN=0.15
+   ADMIN_CHANNEL=your_admin_channel
    ```
 
 3. Install dependencies:
@@ -53,10 +54,12 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
 
 ## Commands
 
-* `/add-filter` → Add a filter for a keyword (send messages to a channel when items match keyword and price).
-* `/list-keyword` → List all tracked keywords.
 * `/follow-keyword` → Start tracking a keyword (1 request every 2 minutes to Vinted).
+* `/list-keyword` → List all tracked keywords.
+* `/add-filter` → Add a filter for a keyword (send messages to a channel when items match keyword and price).
+* `/list-filter` → List all filter.
 * `/delete-keyword` → Remove a tracked keyword.
+* `/delete-filter` → Remove a filter.
 
 ⚠️ You must have the **Admin** discord role to execute commands.
 
@@ -70,6 +73,7 @@ A Discord bot that monitors Vinted for new items matching your keywords and send
 * **followed_articles.json** → Stores tracked articles.
 * **vinted_auth.py** → Handles authentication and API requests to Vinted.
 * **vinted_bypass.py** → Refreshes cookies and bypasses Cloudflare protection.
+* **status_embed.py** → Created an admin embed sent to a channel.
 
 ---
 
@@ -89,4 +93,3 @@ This project is intended **for educational and personal use only**.
 
 
 If you wish to use this bot, please do so **responsibly and at your own risk**.
-

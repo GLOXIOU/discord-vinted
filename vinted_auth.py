@@ -74,32 +74,91 @@ async def fetch_items_with_cookies(cookies: List[Dict[str, str]], search_url: st
     data = search_with_params(search_url, cookies)
     if isinstance(data, dict) and data.get("code"):
         return data
-    return [
-        {
-            "title": item["title"],
-            "url": item["url"],
-            "price": item["price"],
-            "photo": {"url": item["photo"]["url"]},
+
+    items = []
+    for item in data.get("items", []):
+        # photos : array of photo objects with "url" usually
+        photos = []
+        for p in item.get("photos", [])[:3]:
+            # sometimes photos are nested in different keys; we try common ones
+            url = p.get("url") or p.get("full_size") or p.get("medium") or None
+            if url:
+                photos.append(url)
+
+        # fallback to old 'photo' if present
+        if not photos and item.get("photo") and isinstance(item["photo"], dict):
+            url = item["photo"].get("url")
+            if url:
+                photos.append(url)
+
+        # seller info (defensive)
+        user = item.get("user") or {}
+        positive_rate = user.get("positive_feedback_rate") or user.get("positive_feedback_rate_percent") or 0
+        # sometimes API gives 0-100% or 0-1, normalise to 0..1
+        if positive_rate > 1:
+            positive_rate = float(positive_rate) / 100.0
+        # feedback count keys vary
+        feedback_count = user.get("feedback_count") or user.get("feedbacks_count") or 0
+
+        created_at = item.get("created_at_ts") or item.get("created_at") or None
+
+        items.append({
+            "title": item.get("title", "Sans titre"),
+            "url": item.get("url", ""),
+            "price": item.get("price", item.get("price_with_shipping") or {}),
+            "photos": photos,
+            "brand": item.get("brand_title") or item.get("brand", "Inconnue"),
+            "size": item.get("size_title") or item.get("size", "Non précisée"),
+            "condition": item.get("status") or item.get("item_condition") or "Non indiqué",
+            "created_at": created_at,
+            "seller_positive_rate": float(positive_rate),
+            "seller_feedbacks": int(feedback_count or 0),
             "attributes": item.get("attributes", [])
-        }
-        for item in data.get("items", [])
-    ]
+        })
+
+    return items
 
 
 async def fetch_items_with_cookies_and_user_agent(cookies: List[Dict[str, str]], search_url: str, user_agent: str):
     data = search_with_params(search_url, cookies, user_agent=user_agent)
     if isinstance(data, dict) and data.get("code"):
         return data
-    return [
-        {
-            "title": item["title"],
-            "url": item["url"],
-            "price": item["price"],
-            "photo": {"url": item["photo"]["url"]},
+
+    items = []
+    for item in data.get("items", []):
+        photos = []
+        for p in item.get("photos", [])[:3]:
+            url = p.get("url") or p.get("full_size") or p.get("medium") or None
+            if url:
+                photos.append(url)
+        if not photos and item.get("photo") and isinstance(item["photo"], dict):
+            url = item["photo"].get("url")
+            if url:
+                photos.append(url)
+
+        user = item.get("user") or {}
+        positive_rate = user.get("positive_feedback_rate") or user.get("positive_feedback_rate_percent") or 0
+        if positive_rate > 1:
+            positive_rate = float(positive_rate) / 100.0
+        feedback_count = user.get("feedback_count") or user.get("feedbacks_count") or 0
+
+        created_at = item.get("created_at_ts") or item.get("created_at") or None
+
+        items.append({
+            "title": item.get("title", "Sans titre"),
+            "url": item.get("url", ""),
+            "price": item.get("price", item.get("price_with_shipping") or {}),
+            "photos": photos,
+            "brand": item.get("brand_title") or item.get("brand", "Inconnue"),
+            "size": item.get("size_title") or item.get("size", "Non précisée"),
+            "condition": item.get("status") or item.get("item_condition") or "Non indiqué",
+            "created_at": created_at,
+            "seller_positive_rate": float(positive_rate),
+            "seller_feedbacks": int(feedback_count or 0),
             "attributes": item.get("attributes", [])
-        }
-        for item in data.get("items", [])
-    ]
+        })
+
+    return items
 
 
 async def get_cookies():
