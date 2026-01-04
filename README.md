@@ -92,4 +92,11 @@ This project is intended **for educational and personal use only**.
 * By using this project, you agree to take full responsibility for any consequences that may occur.
 
 
+
 If you wish to use this bot, please do so **responsibly and at your own risk**.
+
+---
+
+## 🧾 License
+
+© GLOXIOU 2026
